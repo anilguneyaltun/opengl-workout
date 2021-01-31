@@ -30,28 +30,28 @@ float minSize = 0.1f;
 
 
 // Vertex Shader code
-static const char *vShader = "                                                \n\
-#version 330                                                                  \n\
-                                                                              \n\
-uniform mat4 model;                                                           \n\
-                                                       \n\
-                                                                              \n\
-layout (location = 0) in vec3 pos;											  \n\
-                                                                              \n\
-void main()                                                                   \n\
-{                                                                             \n\
-    gl_Position = model * vec4(pos, 1.0);                           		  \n\
+static const char *vShader = "                           \n\
+#version 330                                             \n\
+                                                         \n\
+uniform mat4 model;                                      \n\
+                                                          \n\
+                                                         \n\
+layout (location = 0) in vec3 pos;			              \n\
+                                                         \n\
+void main()                                              \n\
+{                                                        \n\
+    gl_Position = model * vec4(pos, 1.0);      		  \n\
 }";
 
 // Fragment Shader
-static const char *fShader = "                                                \n\
-#version 330                                                                  \n\
-                                                                              \n\
-out vec4 colour;                                                               \n\
-                                                                              \n\
-void main()                                                                   \n\
-{                                                                             \n\
-    colour = vec4(.4, .9, 1.0, 1.0);                                         \n\
+static const char *fShader = "                   \n\
+#version 330                                     \n\
+                                                 \n\
+out vec4 colour;                                  \n\
+                                                 \n\
+void main()                                      \n\
+{                                                \n\
+    colour = vec4(.4, .9, 1.0, 1.0);            \n\
 }";
 
 void CreateTriangle()
