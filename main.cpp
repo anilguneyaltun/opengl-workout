@@ -48,7 +48,7 @@ static const char *fShader = "                   \n\
 #version 330                                     \n\
                                                  \n\
 out vec4 colour;                                  \n\
-                                                 \n\
+uniform a;                                                 \n\
 void main()                                      \n\
 {                                                \n\
     colour = vec4(.4, .9, 1.0, 1.0);            \n\
@@ -57,7 +57,7 @@ void main()                                      \n\
 void CreateTriangle()
 {
     GLfloat vertices[] = {
-            -1.0f, -1.0f, 0.0f,
+            -.5f, -1.0f, 0.0f,
              1.0f, -1.0f, 0.0f,
              0.0f,  1.0f, 0.0f
     };
