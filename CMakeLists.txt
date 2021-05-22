@@ -1,5 +1,6 @@
-cmake_minimum_required(VERSION 3.17)
+cmake_minimum_required(VERSION 3.15)
 project(CLion)
+
 
 set(CMAKE_CXX_STANDARD 17)
 include_directories(CLion PRIVATE "${PROJECT_SOURCE_DIR}")
@@ -13,9 +14,17 @@ set(GLFW_LINK /usr/local/Cellar/glfw/3.3.2/lib/libglfw.3.3.dylib)
 set(GLM_LINK /usr/local/Cellar/glm/0.9.9.5/lib)
 link_libraries(${OPENGL} ${GLEW_LINK} ${GLFW_LINK})
 
-
-set(SOURCE_FILES src/main.cpp)
-add_executable(CLion src/main.cpp src/Mesh.cpp src/Mesh.h)
+add_executable(CLion
+        src/main.cpp
+        src/Mesh.h
+        src/Mesh.cpp
+        src/Shader.cpp
+        src/Shader.h
+        src/vshader.glsl
+        src/fshader.glsl
+        src/GLWindow.h
+        src/GLWindow.cpp
+)
 
 target_link_libraries(CLion "-framework OpenGL")
 target_link_libraries(CLion "-framework GLUT")
