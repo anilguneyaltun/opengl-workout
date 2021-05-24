@@ -37,7 +37,6 @@ void createObjects()
             19,17,18,
             20,21,23,
             23,21,22
-
     };
 
     GLfloat vertices[] = {
@@ -75,10 +74,11 @@ void createObjects()
     Mesh *obj1 = new Mesh();
     obj1->createMesh(vertices, indices, 128, 128);
     meshList.push_back(obj1);
-
+/*
     Mesh *obj2 = new Mesh();
     obj2->createMesh(vertices, indices, 12, 12);
     meshList.push_back(obj2);
+*/
 }
 
 void createShaders(){
