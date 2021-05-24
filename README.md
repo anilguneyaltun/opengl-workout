@@ -1,4 +1,4 @@
-# OpenGL course
+# OpenGL course and codes
 
 Some triangle stuff based on tutorial series on Udemy.com
 
