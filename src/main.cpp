@@ -82,6 +82,7 @@ int main()
     dirtTexture = Texture("/Users/guney/Developer/CLion/Textures/dirt.png");
     dirtTexture.loadTexture();
 
+    mainLight = Light(1.0f, 1.0f, 1.0f, .6f);
 
 
     GLuint uniformProjection = 0, uniformModel = 0, uniformView = 0, uniformAmbientIntensity = 0, uniformAmbientColor = 0;
@@ -90,7 +91,7 @@ int main()
 
     while (!mainWindow.getShouldClose())
     {
-        mainLight = Light(sin(glfwGetTime() + 0.5f), cos(glfwGetTime()+ 0.5f), sin(glfwGetTime() / 2), 1.0f);
+
         GLfloat currentTime = glfwGetTime();
         dT = currentTime - lastTime;
         lastTime = currentTime;
