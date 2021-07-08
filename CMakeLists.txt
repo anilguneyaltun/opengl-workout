@@ -22,6 +22,7 @@ add_executable(CLion
         src/Shader.h
         src/vshader.glsl
         src/fshader.glsl
+
         src/GLWindow.h
         src/GLWindow.cpp
         src/Camera.cpp src/Camera.h)

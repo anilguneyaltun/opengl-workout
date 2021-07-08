@@ -99,8 +99,7 @@ int main()
 
     camera = Camera(glm::vec3(0.0f,0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0), -90.0f, 0.0f, 3.0f, .05f);
 
-<<<<<<< HEAD
-<<<<<<< HEAD
+
     brickTex = Texture("/Users/guney/Developer/CLion/Textures/brick.png");
     brickTex.loadTexture();
     dirtTexture = Texture("/Users/guney/Developer/CLion/Textures/dirt.png");
@@ -112,24 +111,9 @@ int main()
     GLuint uniformProjection = 0, uniformModel = 0, uniformView = 0, uniformAmbientIntensity = 0, uniformAmbientColor = 0;
     glm::mat4 projection = glm::perspective(glm::radians(45.0f), (GLfloat)mainWindow.getBufferWidth() / mainWindow.getBufferHeight(), 0.1f, 100.0f);
 
-
     while (!mainWindow.getShouldClose())
     {
 
-=======
-    GLuint uniformProjection = 0, uniformModel = 0, uniformView = 0;
-    glm::mat4 projection = glm::perspective(glm::radians(45.0f), 16.0f/9.0f, 0.3f, 1000.0f);
-
-    while (!mainWindow.getShouldClose())
-    {
->>>>>>> parent of ae88d65 (textures updated, ambient light added)
-=======
-    GLuint uniformProjection = 0, uniformModel = 0, uniformView = 0;
-    glm::mat4 projection = glm::perspective(glm::radians(45.0f), 16.0f/9.0f, 0.3f, 1000.0f);
-
-    while (!mainWindow.getShouldClose())
-    {
->>>>>>> parent of ae88d65 (textures updated, ambient light added)
         GLfloat currentTime = glfwGetTime();
         dT = currentTime - lastTime;
         lastTime = currentTime;
