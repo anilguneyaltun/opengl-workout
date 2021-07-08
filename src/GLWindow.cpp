@@ -6,8 +6,8 @@
 
 GLWindow::GLWindow()
 {
-    width = 800;
-    height = 600;
+    width = 1200;
+    height = 720;
 
     for (size_t i = 0; i < 1024; i++)
     {
