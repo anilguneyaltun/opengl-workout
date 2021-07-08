@@ -59,14 +59,6 @@ void Camera::keyControl(bool *keys, GLfloat dt)
     {
         position += right * velocity;
     }
-    if(keys[GLFW_KEY_Q])
-    {
-        position += worldUp * velocity;
-    }
-    if(keys[GLFW_KEY_E])
-    {
-        position -= worldUp * velocity;
-    }
 }
 
 glm::mat4 Camera::calculateViewMatrix()
