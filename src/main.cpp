@@ -132,7 +132,6 @@ int main()
         glUseProgram(0);
 
         mainWindow.swapBuffers();
-
     }
 
     return 0;
