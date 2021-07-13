@@ -61,11 +61,11 @@ void Camera::keyControl(bool *keys, GLfloat dt)
     }
     if(keys[GLFW_KEY_Q])
     {
-        position += worldUp * velocity;
+        position -= worldUp * velocity;
     }
     if(keys[GLFW_KEY_E])
     {
-        position -= worldUp * velocity;
+        position += worldUp * velocity;
     }
 }
 
