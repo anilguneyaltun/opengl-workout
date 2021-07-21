@@ -1,8 +1,6 @@
-//
-// Created by anilguneyaltun on 29.05.2021.
-//
-
 #include "Texture.h"
+
+
 
 Texture::Texture()
 {
@@ -13,7 +11,7 @@ Texture::Texture()
     fileLocation = "";
 }
 
-Texture::Texture(char *fileLoc)
+Texture::Texture(char* fileLoc)
 {
     texID = 0;
     width = 0;
@@ -25,7 +23,6 @@ Texture::Texture(char *fileLoc)
 void Texture::loadTexture()
 {
     unsigned char *texData = stbi_load(fileLocation, &width, &height, &bitDepth, 0);
-
     if (!texData)
     {
         printf("Failed to find: %s\n", fileLocation);
@@ -57,15 +54,15 @@ void Texture::useTexture()
 void Texture::clearTexture()
 {
     glDeleteTextures(1, &texID);
-    texID =0;
-    height = 0;
+    texID = 0;
     width = 0;
-    fileLocation = "";
+    height = 0;
     bitDepth = 0;
+    fileLocation = "";
 }
+
 
 Texture::~Texture()
 {
     clearTexture();
 }
-

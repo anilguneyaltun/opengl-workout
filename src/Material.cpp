@@ -1,0 +1,34 @@
+//
+// Created by anilguneyaltun on 13.07.2021.
+//
+
+#include "Material.h"
+
+
+
+Material::Material()
+{
+    specularIntensity = 0.0f;
+    shininess = 0.0f;
+}
+
+Material::Material(GLfloat sIntensity, GLfloat shine)
+{
+    specularIntensity = sIntensity;
+    shininess = shine;
+}
+
+void Material::useMaterial(GLuint specularIntensityLocation, GLuint shininessLocation)
+{
+    glUniform1f(specularIntensityLocation, specularIntensity);
+    glUniform1f(shininessLocation, shininess);
+}
+
+Material::~Material()
+{
+}
+
+
+
+
+

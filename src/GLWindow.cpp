@@ -1,19 +1,17 @@
-//
-// Created by anilguneyaltun on 22.05.2021.
-//
-
-#include "src/GLWindow.h"
+#include "GLWindow.h"
 
 GLWindow::GLWindow()
 {
-    width = 1200;
-    height = 720;
+    width = 800;
+    height = 600;
 
-    for (size_t i = 0; i < 1024; i++)
+    for(size_t i = 0; i < 1024; i++)
     {
         keys[i] = 0;
     }
 
+    xChange = 0.0f;
+    yChange = 0.0f;
 }
 
 GLWindow::GLWindow(GLint windowWidth, GLint windowHeight)
@@ -21,11 +19,13 @@ GLWindow::GLWindow(GLint windowWidth, GLint windowHeight)
     width = windowWidth;
     height = windowHeight;
 
-
     for (size_t i = 0; i < 1024; i++)
     {
         keys[i] = 0;
     }
+
+    xChange = 0.0f;
+    yChange = 0.0f;
 }
 
 int GLWindow::init()
@@ -61,6 +61,7 @@ int GLWindow::init()
     // Set the current context
     glfwMakeContextCurrent(mainWindow);
 
+    // Handle Key + Mouse Input
     createCallBacks();
     glfwSetInputMode(mainWindow, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
@@ -82,10 +83,7 @@ int GLWindow::init()
     glViewport(0, 0, bufferWidth, bufferHeight);
 
     glfwSetWindowUserPointer(mainWindow, this);
-
-    return 0;
 }
-
 
 void GLWindow::createCallBacks()
 {
@@ -107,15 +105,15 @@ GLfloat GLWindow::getYChange()
     return theChange;
 }
 
-
-void GLWindow::handleKeys(GLFWwindow *window, int key, int code, int action, int mode)
+void GLWindow::handleKeys(GLFWwindow* window, int key, int code, int action, int mode)
 {
-    GLWindow *theWindow = static_cast<GLWindow *>(glfwGetWindowUserPointer(window));
+    GLWindow* theWindow = static_cast<GLWindow*>(glfwGetWindowUserPointer(window));
 
     if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
     {
         glfwSetWindowShouldClose(window, GL_TRUE);
     }
+
     if (key >= 0 && key < 1024)
     {
         if (action == GLFW_PRESS)
@@ -126,19 +124,20 @@ void GLWindow::handleKeys(GLFWwindow *window, int key, int code, int action, int
         {
             theWindow->keys[key] = false;
         }
-
     }
 }
 
-void GLWindow::handleMouse(GLFWwindow *window, double xPos, double yPos)
+void GLWindow::handleMouse(GLFWwindow* window, double xPos, double yPos)
 {
-    GLWindow *theWindow = static_cast<GLWindow *>(glfwGetWindowUserPointer(window));
+    GLWindow* theWindow = static_cast<GLWindow*>(glfwGetWindowUserPointer(window));
+
     if (theWindow->mouseMoved)
     {
         theWindow->lastX = xPos;
         theWindow->lastY = yPos;
         theWindow->mouseMoved = false;
     }
+
     theWindow->xChange = xPos - theWindow->lastX;
     theWindow->yChange = theWindow->lastY - yPos;
 
@@ -151,9 +150,3 @@ GLWindow::~GLWindow()
     glfwDestroyWindow(mainWindow);
     glfwTerminate();
 }
-
-
-
-
-
-

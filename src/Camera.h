@@ -18,6 +18,9 @@ public:
     void keyControl(bool *keys, GLfloat dt);
     void mouseControl(GLfloat xChange, GLfloat yChange);
 
+    glm::vec3 getCameraDirection();
+
+    glm::vec3 getCameraPosition();
     glm::mat4 calculateViewMatrix();
 
     ~Camera();
@@ -30,7 +33,7 @@ private:
     glm::vec3 worldUp;
 
     GLfloat yaw;
-    GLfloat  pitch;
+    GLfloat pitch;
 
     GLfloat movementSpeed;
     GLfloat turnSpeed;

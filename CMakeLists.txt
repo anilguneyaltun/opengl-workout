@@ -19,15 +19,15 @@ add_executable(CLion
         src/Mesh.cpp
         src/Shader.cpp
         src/Shader.h
-        src/vshader.glsl
-        src/fshader.glsl
+        src/vertex.glsl
+        src/fragment.glsl
         src/GLWindow.h
         src/GLWindow.cpp
         src/Camera.cpp
         src/Camera.h
         src/Texture.cpp
         src/Texture.h
-        src/stb_image.h src/Light.cpp src/Light.h)
+        src/stb_image.h src/Light.cpp src/Light.h src/Material.cpp src/Material.h src/DirectionalLight.cpp src/DirectionalLight.h src/PointLight.cpp src/PointLight.h src/CommonValues.h src/SpotLight.cpp src/SpotLight.h)
 
 target_link_libraries(CLion "-framework OpenGL")
 target_link_libraries(CLion "-framework GLUT")

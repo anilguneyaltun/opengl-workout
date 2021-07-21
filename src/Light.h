@@ -12,21 +12,16 @@ class Light
 {
 public:
     Light();
-    Light(GLfloat red, GLfloat green, GLfloat blue, GLfloat aIntensity,
-          GLfloat xDir, GLfloat yDir, GLfloat zDir, GLfloat dIntensity);
-    void useLight(GLfloat ambientIntensityLoc, GLfloat ambientColorLoc,
-                  GLfloat diffuseIntensityLoc, GLfloat directionLoc);
+    Light(GLfloat red, GLfloat green, GLfloat blue,
+          GLfloat aIntensity, GLfloat dIntensity);
+
     ~Light();
 
-private:
-    glm::vec3 color{};
-    GLfloat ambientIntensity{};
-
-    glm::vec3 direction;
+protected:
+    glm::vec3 color;
+    GLfloat ambientIntensity;
     GLfloat diffuseIntensity;
 
 };
-
-
 
 #endif //MAIN_CPP_LIGHT_H
