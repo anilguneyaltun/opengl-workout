@@ -6,7 +6,7 @@ Some triangle stuff based on tutorial series on Udemy.com
 
 <br>
 
-</br>
+
 Couldn't get first triangle but it works, I guess...
 ![alt text](https://github.com/anilguneyaltun/opengl-workout/blob/master/progress%20pics/1.png)
 
