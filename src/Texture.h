@@ -6,16 +6,18 @@
 #define MAIN_CPP_TEXTURE_H
 
 #include "glew.h"
-#include "stb_image.h"
+#include "include/stb_image.h"
 
 class Texture
 {
 
 public:
     Texture();
-    Texture(char *fileLoc);
+    Texture(const char *fileLoc);
 
-    void loadTexture();
+    bool loadTexture();
+    bool loadTextureA();
+
     void useTexture();
     void clearTexture();
     ~Texture();
@@ -25,7 +27,7 @@ private:
     GLuint texID;
     int width, height, bitDepth;
 
-    char* fileLocation;
+    const char* fileLocation;
 };
 
 

@@ -1,8 +1,6 @@
 
 #define STB_IMAGE_IMPLEMENTATION
 
-
-#include <string.h>
 #include <vector>
 
 #include <glew.h>
@@ -23,6 +21,7 @@
 #include "PointLight.h"
 #include "SpotLight.h"
 #include "Material.h"
+#include "Model.h"
 
 const float toRadians = 3.14159265f / 180.0f;
 
@@ -38,6 +37,8 @@ Texture plainTexture;
 Material shinyMaterial;
 Material dullMaterial;
 
+Model plane;
+
 DirectionalLight mainLight;
 PointLight pointLights[MAX_POINT_LIGHTS];
 SpotLight spotLights[MAX_SPOT_LIGHTS];
@@ -45,8 +46,8 @@ SpotLight spotLights[MAX_SPOT_LIGHTS];
 GLfloat deltaTime = 0.0f;
 GLfloat lastTime = 0.0f;
 
-static const char *vShader = "../src/vertex.glsl";
-static const char *fShader = "../src/fragment.glsl";
+static const char *vShader = "src/vertex.glsl";
+static const char *fShader = "src/fragment.glsl";
 
 void calcAverageNormals(unsigned int * indices, unsigned int indiceCount, GLfloat * vertices, unsigned int verticeCount,
                         unsigned int vLength, unsigned int normalOffset)
@@ -129,6 +130,7 @@ void CreateShaders()
 
 int main()
 {
+
     mainWindow = GLWindow(1366, 768); // 1280, 1024 or 1024, 768
     mainWindow.init();
 
@@ -138,19 +140,22 @@ int main()
     camera = Camera(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f),
                     -60.0f, 0.0f, 5.0f, 0.2f);
 
-    brickTexture = Texture("/Users/guney/Developer/CLion/Textures/brick.png");
-    brickTexture.loadTexture();
-    dirtTexture = Texture("/Users/guney/Developer/CLion/Textures/dirt.png");
-    dirtTexture.loadTexture();
-    plainTexture = Texture("/Users/guney/Developer/CLion/Textures/plain.png");
-    plainTexture.loadTexture();
+    brickTexture = Texture("Textures/brick.png");
+    brickTexture.loadTextureA();
+    dirtTexture = Texture("Textures/dirt.png");
+    dirtTexture.loadTextureA();
+    plainTexture = Texture("Textures/plain.png");
+    plainTexture.loadTextureA();
 
     shinyMaterial = Material(4.0f, 256);
     dullMaterial = Material(0.3f, 4);
 
-    mainLight = DirectionalLight(0.0f, 0.0f, 0.0f,
-                                 0.0f, 0.0f,
-                                 0.0f, 0.0f, -1.0f);
+    plane = Model();
+    plane.loadModel("Models/11803_Airplane_v1_l1.obj");
+
+    mainLight = DirectionalLight(1.0f, 1.0f, 1.0f,
+                                 0.3f, 0.6f,
+                                 0.0f, -1.0f, -1.0f);
 
     unsigned int pointLightCount = 0;
     pointLights[0] = PointLight(0.0f, 0.0f, 0.0f,
@@ -165,16 +170,16 @@ int main()
     pointLightCount++;
     unsigned int spotLightCount = 0;
     spotLights[0] = SpotLight(1.0f, 1.0f, 1.0f,
-                              0.0f, 2.0f,
+                              0.0f, 0.0f,
                               0.0f, 0.0f, 0.0f,
-                              0.0f, -1.0f, 0.0f,
+                              0.0f, -0.0f, 0.0f,
                               1.0f, 0.0f, 0.0f,
                               20.0f);
     spotLightCount++;
     spotLights[1] = SpotLight(1.0f, 1.0f, 1.0f,
                               0.0f, 2.0f,
                               0.0f, -1.5f, 0.0f,
-                              -100.0f, -1.0f, 0.0f,
+                              -200.0f, -1.0f, 0.0f,
                               1.0f, 0.0f, 0.0f,
                               20.0f);
     spotLightCount++;
@@ -195,7 +200,7 @@ int main()
         camera.keyControl(mainWindow.getKeys(), deltaTime);
         camera.mouseControl(mainWindow.getXChange(), mainWindow.getYChange());
 
-        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+        glClearColor(0.051f, 0.196f, 0.255f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         shaderList[0].useShader();
@@ -224,7 +229,7 @@ int main()
         glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
         brickTexture.useTexture();
         shinyMaterial.useMaterial(uniformSpecularIntensity, uniformShininess);
-        meshList[0]->renderMesh();
+        //meshList[0]->renderMesh();
 
         model = glm::mat4(1.0f);
         model = glm::translate(model, glm::vec3(0.0f, 4.0f, -2.5f));
@@ -232,15 +237,27 @@ int main()
         glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
         dirtTexture.useTexture();
         dullMaterial.useMaterial(uniformSpecularIntensity, uniformShininess);
-        meshList[1]->renderMesh();
+       // meshList[1]->renderMesh();
 
         model = glm::mat4(1.0f);
         model = glm::translate(model, glm::vec3(0.0f, -2.0f, 0.0f));
         //model = glm::scale(model, glm::vec3(0.4f, 0.4f, 1.0f));
         glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
         dirtTexture.useTexture();
+        dullMaterial.useMaterial(uniformSpecularIntensity, uniformShininess);
+       meshList[2]->renderMesh();
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(0.0f, sin(now) * 0.04f, 5.0f));
+        model = glm::scale(model, glm::vec3(0.001f, 0.001f, 0.001f));
+        model = glm::rotate(model, toRadians * -90 , glm::vec3(1.0f, 0.0f, 0.0f));
+        model = glm::rotate(model, toRadians * -15 , glm::vec3(0.0f, 1.0f, 0.0f));
+        model = glm::rotate(model, toRadians * (sin(now * 0.5f) * 4.0f) , glm::vec3(1.0f, 0.0f, 0.0f));
+
+
+        glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
         shinyMaterial.useMaterial(uniformSpecularIntensity, uniformShininess);
-        meshList[2]->renderMesh();
+        plane.renderModel();
 
         glUseProgram(0);
         mainWindow.swapBuffers();

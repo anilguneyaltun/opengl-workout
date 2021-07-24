@@ -1,0 +1,6 @@
+/Applications/Dev/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Release -G "CodeBlocks - Unix Makefiles" /Users/guney/Developer/CLion
+-- Found OpenGL: /Library/Developer/CommandLineTools/SDKs/MacOSX11.3.sdk/System/Library/Frameworks/OpenGL.framework   
+-- Configuring done
+WARNING: Target "CLion" requests linking to directory "/usr/local/Cellar/glm/0.9.9.8/lib".  Targets may link only to libraries.  CMake is dropping the item.
+-- Generating done
+-- Build files have been written to: /Users/guney/Developer/CLion/cmake-build-release
